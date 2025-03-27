@@ -1,15 +1,16 @@
 const request = require('supertest');
-const { app, server } = require('../app'); // ✅ Correct import
+const { app, server,name} = require('../app'); 
 
 describe("GET /", () => {
     it("Should return 200 status and the correct message", async () => {
         const response = await request(app).get("/");
-        expect(response.status).toBe(200); // ✅ Check status
-        expect(response.text).toBe("Hello, ShopEasy by Madhan...🚀"); // ✅ Check message
+        expect(response.status).toBe(200); 
+        expect(response.text).toBe(`Hello, ShopEasy by ${name}...🚀`); 
     });
 });
 
-// ✅ Close the server after all tests
 afterAll((done) => {
     server.close(done);
 });
+
+
